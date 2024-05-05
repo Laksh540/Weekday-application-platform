@@ -5,9 +5,10 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import { Autocomplete, Chip, TextField } from "@mui/material";
+import { Autocomplete, Chip, TextField, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import MultiSelect from "./Components/MultiSelect/MultiSelect";
 
 const options = [
   { name: "frontend", category: "engineering" },
@@ -30,81 +31,99 @@ function App() {
 
   return (
     <div className="App ">
-      <Autocomplete
-        // disablePortal
-        // defaultValue={null}
-        multiple
-        // autoHighlight
-        // autoSelect
-        id="combo-box-demo"
-        className=" autocomplete"
-        filterSelectedOptions // to filter selected options
-        value={value}
-        inputValue={inputValue}
-        isOptionEqualToValue={(option, value) => {
-          console.log(" isOptionEqualToValue value ", value);
-          console.log(" isOptionEqualToValue option ", option);
-          return option?.name === value?.name;
-        }}
-        onChange={onChange}
-        onInputChange={onChangeInputChange}
-        options={options}
-        groupBy={(option) => option.category} // to group by
-        getOptionLabel={(option) => option.name} //   to show label
-        getOptionKey={(option) => option.name}
-        // sx={{ width: 300 }} // width
-        renderInput={(params) => {
-          // console.log("params", params);
-          return (
-            <div className=" test1">
-              <TextField
-                {...params}
-                label="test"
-                className={` test  ${
-                  value?.length === 0 ? "popupIndicator-separator" : ""
-                }`}
+      {/* <div className="">
+        {value?.length > 0 ? (
+          <div>
+            <Typography className="">Favorites</Typography>
+          </div>
+        ) : null}
+        <Autocomplete
+          // disablePortal
+          // defaultValue={null}
+          multiple
+          // autoHighlight
+          // autoSelect
+          id="combo-box-demo"
+          className=" autocomplete"
+          filterSelectedOptions // to filter selected options
+          value={value}
+          inputValue={inputValue}
+          isOptionEqualToValue={(option, value) => {
+            console.log(" isOptionEqualToValue value ", value);
+            console.log(" isOptionEqualToValue option ", option);
+            return option?.name === value?.name;
+          }}
+          onChange={onChange}
+          onInputChange={onChangeInputChange}
+          options={options}
+          groupBy={(option) => option.category} // to group by
+          getOptionLabel={(option) => option.name} //   to show label
+          getOptionKey={(option) => option.name}
+          // sx={{ width: 300 }} // width
+          renderInput={(params) => {
+            // console.log("params", params);
+            return (
+              <div className=" test1">
+                <TextField
+                  {...params}
+                  // label="test"
+                  className={` test  ${
+                    value?.length === 0 ? "popupIndicator-separator" : ""
+                  }`}
+                  placeholder={value?.length === 0 ? "Favorites" : ""}
+                  // lab
+                  // hiddenLabel
+                  // hidden
+                />
+              </div>
+            );
+          }} // render input
+          renderTags={(eachValue, getTagProps) =>
+            eachValue.map((option, index) => (
+              // <div key={index}>
+              <Chip
+                // variant="outlined"
+                {...getTagProps({ index })}
+                className={`${
+                  value?.length !== index - 1
+                    ? "autocomplete-chip-margin-right"
+                    : "autocomplete-chip-margin-right-0"
+                } autocomplete-chip`}
+                key={option?.name}
+                deleteIcon={<CloseIcon className=" " />}
+                label={option?.name}
               />
-            </div>
-          );
-        }} // render input
-        renderTags={(eachValue, getTagProps) =>
-          eachValue.map((option, index) => (
-            // <div key={index}>
-            <Chip
-              // variant="outlined"
-              {...getTagProps({ index })}
-              className={`${
-                value?.length !== index - 1
-                  ? "autocomplete-chip-margin-right"
-                  : "autocomplete-chip-margin-right-0"
-              } autocomplete-chip`}
-              key={option?.name}
-              deleteIcon={<CloseIcon className=" " />}
-              label={option?.name}
-            />
-            // </div>
-          ))
-        } //  to display individual
-        clearIcon={<CloseIcon className=" test-clear " />}
-        componentsProps={{
-          popupIndicator: {
-            disableRipple: true,
-            className: " pop-indicator-padding",
-          },
-          clearIndicator: {
-            className: `${
-              value?.length > 0
-                ? "popupIndicator-separator-after-clear-indicator"
-                : ""
-            }`,
-          },
-        }}
-        onFocus={() => {
-          console.log("focus");
-        }}
-        onBlur={() => {
-          console.log("onBlur");
-        }}
+              // </div>
+            ))
+          } //  to display individual
+          clearIcon={<CloseIcon className=" test-clear " />}
+          componentsProps={{
+            popupIndicator: {
+              disableRipple: true,
+              className: " pop-indicator-padding",
+            },
+            clearIndicator: {
+              className: `${
+                value?.length > 0
+                  ? "popupIndicator-separator-after-clear-indicator"
+                  : ""
+              }`,
+            },
+          }}
+          openText="test2"
+        />
+      </div> */}
+
+      <MultiSelect
+        value={value}
+        options={options}
+        inputValue={inputValue}
+        optionLabel={"name"}
+        optionKey={"name"}
+        onChange={onChange}
+        onChangeInput={onChangeInputChange}
+        groupBy={"category"}
+        label={"test"}
       />
     </div>
   );
