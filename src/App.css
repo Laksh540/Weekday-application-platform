@@ -7,6 +7,10 @@
   min-width: 250px;
 }
 
+.autocomplete:focus {
+  border: 1px solid gray !important;
+}
+
 .autocomplete-chip {
   border-radius: 2px !important;
   /* color: red; */
@@ -26,12 +30,22 @@
 
 .autocomplete .MuiAutocomplete-clearIndicator {
   background: none !important;
+  visibility: visible !important;
 }
 
 .autocomplete .MuiAutocomplete-popupIndicator {
   background: none !important;
 }
 
-.autocomplete .MuiAutocomplete-popupIndicator:active {
-  background: none !important;
+/*  conditionally pass the border class to popup indicator */
+.autocomplete .MuiAutocomplete-popupIndicator-border-left {
+  border-radius: 0px !important;
+  border-left: 1px solid rgb(204, 204, 204) !important;
+  border-right: 0 !important;
+}
+
+.autocomplete .MuiAutocomplete-popupIndicator-border-right {
+  border-radius: 0px !important;
+  border-right: 1px solid rgb(204, 204, 204) !important;
+  border-left: 0 !important;
 }
