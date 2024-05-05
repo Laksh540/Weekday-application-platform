@@ -6,6 +6,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { Autocomplete, Chip, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         disablePortal
         multiple
         id="combo-box-demo"
-        className=" autocomplete-width "
+        className=" autocomplete "
         filterSelectedOptions // to filter selected options
         options={[
           { name: "frontend", category: "engineering" },
@@ -39,6 +40,13 @@ function App() {
             />
           ))
         } //  to display individual
+        clearIcon={<CloseIcon className=" " />}
+        componentsProps={{ popupIndicator: { disableRipple: true } }}
+        // popupIcon={
+        //   <div className="test">
+        //     <ArrowDropDownIcon />
+        //   </div>
+        // }
       />
     </div>
   );

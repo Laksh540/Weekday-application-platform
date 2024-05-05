@@ -2,7 +2,7 @@
   margin-top: 12px;
 }
 
-.autocomplete-width {
+.autocomplete {
   width: fit-content;
   min-width: 250px;
 }
@@ -22,4 +22,16 @@
   background: rgb(255, 189, 173);
   color: rgb(222, 53, 11) !important;
   border-radius: 4px;
+}
+
+.autocomplete .MuiAutocomplete-clearIndicator {
+  background: none !important;
+}
+
+.autocomplete .MuiAutocomplete-popupIndicator {
+  background: none !important;
+}
+
+.autocomplete .MuiAutocomplete-popupIndicator:active {
+  background: none !important;
 }
