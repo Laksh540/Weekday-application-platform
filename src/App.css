@@ -11,9 +11,29 @@
   border: 1px solid gray !important;
 }
 
-.autocomplete-chip {
-  border-radius: 2px !important;
+/* to show the  autocomplete separator between clear and popup buttons  */
+.autocomplete .popupIndicator-separator .MuiAutocomplete-input {
+  border-radius: 0;
+  border-right: 1px solid rgb(204, 204, 204) !important;
+  /* margin-right: 6px; */
   /* color: red; */
+}
+
+.autocomplete .popupIndicator-separator-after-clear-indicator {
+  border-radius: 0;
+  border-right: 1px solid rgb(204, 204, 204) !important;
+}
+
+/* .autocomplete .pop-indicator-padding {
+  padding-left: 6px;
+} */
+
+.autocomplete .autocomplete-chip-margin-right {
+  margin-right: 6px !important;
+}
+
+.autocomplete-chip-margin-right-0 {
+  margin-right: 0px !important;
 }
 
 .autocomplete-chip .MuiChip-deleteIcon {

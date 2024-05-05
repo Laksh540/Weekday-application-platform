@@ -34,12 +34,18 @@ function App() {
         // disablePortal
         // defaultValue={null}
         multiple
+        // autoHighlight
+        // autoSelect
         id="combo-box-demo"
-        className=" autocomplete "
+        className=" autocomplete"
         filterSelectedOptions // to filter selected options
         value={value}
         inputValue={inputValue}
-        // isOptionEqualToValue={(option, value) => option.name === value?.name}
+        isOptionEqualToValue={(option, value) => {
+          console.log(" isOptionEqualToValue value ", value);
+          console.log(" isOptionEqualToValue option ", option);
+          return option?.name === value?.name;
+        }}
         onChange={onChange}
         onInputChange={onChangeInputChange}
         options={options}
@@ -49,15 +55,29 @@ function App() {
         // sx={{ width: 300 }} // width
         renderInput={(params) => {
           // console.log("params", params);
-          return <TextField {...params} label="Movie" />;
+          return (
+            <div className=" test1">
+              <TextField
+                {...params}
+                label="test"
+                className={` test  ${
+                  value?.length === 0 ? "popupIndicator-separator" : ""
+                }`}
+              />
+            </div>
+          );
         }} // render input
-        renderTags={(value, getTagProps) =>
-          value.map((option, index) => (
+        renderTags={(eachValue, getTagProps) =>
+          eachValue.map((option, index) => (
             // <div key={index}>
             <Chip
               // variant="outlined"
               {...getTagProps({ index })}
-              className=" autocomplete-chip"
+              className={`${
+                value?.length !== index - 1
+                  ? "autocomplete-chip-margin-right"
+                  : "autocomplete-chip-margin-right-0"
+              } autocomplete-chip`}
               key={option?.name}
               deleteIcon={<CloseIcon className=" " />}
               label={option?.name}
@@ -65,12 +85,19 @@ function App() {
             // </div>
           ))
         } //  to display individual
-        clearIcon={<CloseIcon className=" " />}
+        clearIcon={<CloseIcon className=" test-clear " />}
         componentsProps={{
           popupIndicator: {
             disableRipple: true,
+            className: " pop-indicator-padding",
           },
-          // clearIndicator: {vis},
+          clearIndicator: {
+            className: `${
+              value?.length > 0
+                ? "popupIndicator-separator-after-clear-indicator"
+                : ""
+            }`,
+          },
         }}
         onFocus={() => {
           console.log("focus");
