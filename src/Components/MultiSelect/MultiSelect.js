@@ -22,26 +22,25 @@ const MultiSelect = (props) => {
     onChangeInput,
     label,
     groupBy,
+    single,
   } = props;
 
   return (
     <div className="">
       <div className={selectClass?.["autocomplete-label"]}>
-        {value?.length > 0 ? (
+        {value?.length > 0 || (single && value !== null) ? (
           <Typography className="">{label}</Typography>
         ) : null}
       </div>
       <Autocomplete
-        multiple
+        multiple={!single ? true : false}
         id="combo-box-demo"
         className={selectClass?.autocomplete}
         filterSelectedOptions
         value={value}
         inputValue={inputValue}
         isOptionEqualToValue={(option, value) => {
-          console.log(" isOptionEqualToValue value ", value);
-          console.log(" isOptionEqualToValue option ", option);
-          return option?.name === value?.name;
+          return option?.[optionKey] === value?.[optionKey];
         }}
         onChange={onChange}
         onInputChange={onChangeInput}
@@ -58,9 +57,9 @@ const MultiSelect = (props) => {
               className={`   ${
                 value?.length === 0
                   ? selectClass?.["popupIndicator-separator"]
-                  : selectClass?.["popupIndicator-separator"]
+                  : ""
               }`}
-              placeholder={value?.length === 0 ? label : ""}
+              placeholder={value?.length === 0 || single ? label : ""}
             />
           );
         }} // render input

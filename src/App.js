@@ -5,126 +5,250 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import { Autocomplete, Chip, TextField, Typography } from "@mui/material";
+import {
+  Autocomplete,
+  Chip,
+  Grid,
+  TextField,
+  Typography,
+  item,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MultiSelect from "./Components/MultiSelect/MultiSelect";
 
-const options = [
+const roleOptions = [
   { name: "frontend", category: "engineering" },
   { name: "Backend", category: "engineering" },
   { name: "Product Manager", category: "product" },
 ];
+
+const noOfEmployeeOptions = [
+  { name: "1-10" },
+  { name: "10-50" },
+  { name: "50-200" },
+];
+
+const experienceOptions = [
+  { name: "1" },
+  { name: "2" },
+  { name: "3" },
+  { name: "4" },
+  { name: "5" },
+];
+
+const RemoteOptions = [
+  { name: "Remote" },
+  { name: "Hybrid" },
+  { name: "In-Office" },
+];
+
+const minBasePayOptions = [{ name: "6" }, { name: "8" }, { name: "10" }];
 function App() {
-  const [value, setValue] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [pageObj, setPageObj] = useState({
+    role: {
+      selected: [],
+      inputValue: "",
+    },
+    noOfEmployees: {
+      selected: [],
+      inputValue: "",
+    },
+    experience: {
+      selected: [],
+      inputValue: "",
+    },
+    remote: {
+      selected: [],
+      inputValue: "",
+    },
+    minimumBasePay: {
+      selected: null,
+      inputValue: "",
+    },
+    companyName: "",
+  });
 
-  const onChange = (e, newValue) => {
-    console.log("value ", newValue);
-    setValue(newValue);
+  // OnChange
+
+  const onChangeRole = (e, newValue) => {
+    setPageObj((prevObj) => ({
+      ...prevObj,
+      role: {
+        ...prevObj.role,
+        selected: newValue,
+      },
+    }));
   };
 
-  const onChangeInputChange = (e, newValue) => {
-    console.log("value ", newValue);
-    setInputValue(newValue);
+  const onChangeRoleInput = (e, newValue) => {
+    setPageObj((prevObj) => ({
+      ...prevObj,
+      role: {
+        ...prevObj.role,
+        inputValue: newValue,
+      },
+    }));
   };
 
+  const onChangeNoOfEmployee = (e, newValue) => {
+    setPageObj((prevObj) => ({
+      ...prevObj,
+      noOfEmployees: {
+        ...prevObj.noOfEmployees,
+        selected: newValue,
+      },
+    }));
+  };
+
+  const onChangeNoOfEmployeeInput = (e, newValue) => {
+    setPageObj((prevObj) => ({
+      ...prevObj,
+      noOfEmployees: {
+        ...prevObj.noOfEmployees,
+        inputValue: newValue,
+      },
+    }));
+  };
+
+  const onChangeExperience = (e, newValue) => {
+    setPageObj((prevObj) => ({
+      ...prevObj,
+      experience: {
+        ...prevObj.experience,
+        selected: newValue,
+      },
+    }));
+  };
+
+  const onChangeExperienceInput = (e, newValue) => {
+    setPageObj((prevObj) => ({
+      ...prevObj,
+      experience: {
+        ...prevObj.experience,
+        inputValue: newValue,
+      },
+    }));
+  };
+
+  const onChangeRemote = (e, newValue) => {
+    setPageObj((prevObj) => ({
+      ...prevObj,
+      remote: {
+        ...prevObj.remote,
+        selected: newValue,
+      },
+    }));
+  };
+
+  const onChangeRemoteInput = (e, newValue) => {
+    setPageObj((prevObj) => ({
+      ...prevObj,
+      remote: {
+        ...prevObj.remote,
+        inputValue: newValue,
+      },
+    }));
+  };
+
+  const onChangeMinBasePay = (e, newValue) => {
+    setPageObj((prevObj) => ({
+      ...prevObj,
+      minimumBasePay: {
+        ...prevObj.minimumBasePay,
+        selected: newValue,
+      },
+    }));
+  };
+
+  const onChangeMinBasePayInput = (e, newValue) => {
+    setPageObj((prevObj) => ({
+      ...prevObj,
+      minimumBasePay: {
+        ...prevObj.minimumBasePay,
+        inputValue: newValue,
+      },
+    }));
+  };
   return (
     <div className="App ">
-      {/* <div className="">
-        {value?.length > 0 ? (
-          <div>
-            <Typography className="">Favorites</Typography>
-          </div>
-        ) : null}
-        <Autocomplete
-          // disablePortal
-          // defaultValue={null}
-          multiple
-          // autoHighlight
-          // autoSelect
-          id="combo-box-demo"
-          className=" autocomplete"
-          filterSelectedOptions // to filter selected options
-          value={value}
-          inputValue={inputValue}
-          isOptionEqualToValue={(option, value) => {
-            console.log(" isOptionEqualToValue value ", value);
-            console.log(" isOptionEqualToValue option ", option);
-            return option?.name === value?.name;
-          }}
-          onChange={onChange}
-          onInputChange={onChangeInputChange}
-          options={options}
-          groupBy={(option) => option.category} // to group by
-          getOptionLabel={(option) => option.name} //   to show label
-          getOptionKey={(option) => option.name}
-          // sx={{ width: 300 }} // width
-          renderInput={(params) => {
-            // console.log("params", params);
-            return (
-              <div className=" test1">
-                <TextField
-                  {...params}
-                  // label="test"
-                  className={` test  ${
-                    value?.length === 0 ? "popupIndicator-separator" : ""
-                  }`}
-                  placeholder={value?.length === 0 ? "Favorites" : ""}
-                  // lab
-                  // hiddenLabel
-                  // hidden
-                />
-              </div>
-            );
-          }} // render input
-          renderTags={(eachValue, getTagProps) =>
-            eachValue.map((option, index) => (
-              // <div key={index}>
-              <Chip
-                // variant="outlined"
-                {...getTagProps({ index })}
-                className={`${
-                  value?.length !== index - 1
-                    ? "autocomplete-chip-margin-right"
-                    : "autocomplete-chip-margin-right-0"
-                } autocomplete-chip`}
-                key={option?.name}
-                deleteIcon={<CloseIcon className=" " />}
-                label={option?.name}
-              />
-              // </div>
-            ))
-          } //  to display individual
-          clearIcon={<CloseIcon className=" test-clear " />}
-          componentsProps={{
-            popupIndicator: {
-              disableRipple: true,
-              className: " pop-indicator-padding",
-            },
-            clearIndicator: {
-              className: `${
-                value?.length > 0
-                  ? "popupIndicator-separator-after-clear-indicator"
-                  : ""
-              }`,
-            },
-          }}
-          openText="test2"
+      <div className="filter-container">
+        <MultiSelect
+          value={pageObj?.role?.selected}
+          options={roleOptions}
+          inputValue={pageObj?.role?.inputValue}
+          optionLabel={"name"}
+          optionKey={"name"}
+          onChange={onChangeRole}
+          onChangeInput={onChangeRoleInput}
+          groupBy={"category"}
+          label={"Role"}
         />
-      </div> */}
 
-      <MultiSelect
-        value={value}
-        options={options}
-        inputValue={inputValue}
-        optionLabel={"name"}
-        optionKey={"name"}
-        onChange={onChange}
-        onChangeInput={onChangeInputChange}
-        groupBy={"category"}
-        label={"test"}
-      />
+        <MultiSelect
+          value={pageObj?.noOfEmployees?.selected}
+          options={noOfEmployeeOptions}
+          inputValue={pageObj?.noOfEmployees?.inputValue}
+          optionLabel={"name"}
+          optionKey={"name"}
+          onChange={onChangeNoOfEmployee}
+          onChangeInput={onChangeNoOfEmployeeInput}
+          // groupBy={"category"}
+          label={"No Of Employees"}
+        />
+
+        <MultiSelect
+          value={pageObj?.experience?.selected}
+          options={experienceOptions}
+          inputValue={pageObj?.experience?.inputValue}
+          optionLabel={"name"}
+          optionKey={"name"}
+          onChange={onChangeExperience}
+          onChangeInput={onChangeExperienceInput}
+          // groupBy={"category"}
+          label={"Experience"}
+        />
+
+        <MultiSelect
+          value={pageObj?.remote?.selected}
+          options={RemoteOptions}
+          inputValue={pageObj?.remote?.inputValue}
+          optionLabel={"name"}
+          optionKey={"name"}
+          onChange={onChangeRemote}
+          onChangeInput={onChangeRemoteInput}
+          // groupBy={"category"}
+          label={"Remote"}
+        />
+
+        <MultiSelect
+          value={pageObj?.minimumBasePay?.selected}
+          options={minBasePayOptions}
+          inputValue={pageObj?.minimumBasePay?.inputValue}
+          optionLabel={"name"}
+          optionKey={"name"}
+          onChange={onChangeMinBasePay}
+          onChangeInput={onChangeMinBasePayInput}
+          // groupBy={"category"}
+          label={"Minimum Base pay Salary"}
+          single={true}
+        />
+      </div>
+
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          xs=8
+        </Grid>
+        <Grid item xs={4}>
+          xs=4
+        </Grid>
+        <Grid item xs={4}>
+          xs=4
+        </Grid>
+        <Grid item xs={8}>
+          xs=8
+        </Grid>
+      </Grid>
     </div>
   );
 }

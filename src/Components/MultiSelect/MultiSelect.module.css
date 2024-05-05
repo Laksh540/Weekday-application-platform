@@ -12,7 +12,7 @@
 
 /* to show the  autocomplete separator between clear and popup buttons  */
 .autocomplete .popupIndicator-separator .MuiInputBase-input {
-  border-radius: 0;
+  border-radius: 0 !important;
   border-right: 1px solid rgb(204, 204, 204) !important;
   /* margin-right: 6px; */
   /* color: red; */
