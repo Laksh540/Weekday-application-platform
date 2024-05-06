@@ -1,5 +1,5 @@
 import logo from "./logo.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // import "@fontsource/roboto/300.css";
 // import "@fontsource/roboto/400.css";
@@ -23,6 +23,7 @@ import MultiSelect from "./Components/MultiSelect/MultiSelect";
 import "./App.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import InputText from "./Components/InputText/InputText";
+import JobService from "./Services/JobService";
 
 const roleOptions = [
   { name: "frontend", category: "engineering" },
@@ -51,7 +52,10 @@ const RemoteOptions = [
 ];
 
 const minBasePayOptions = [{ name: "6" }, { name: "8" }, { name: "10" }];
-function App() {
+let isFirstRenderCheckToGetJobList = true;
+const App = () => {
+  // let isFirstRenderCheckToGetJobList = true;
+  //  states
   const [pageObj, setPageObj] = useState({
     role: {
       selected: [],
@@ -75,6 +79,65 @@ function App() {
     },
     companyName: "",
   });
+  const [toggleToRequestMoreData, setToggleToRequestMoreData] = useState(true);
+
+  // useEffect
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop, clientHeight, scrollHeight } =
+        document.documentElement;
+      console.log("scrollTop", scrollTop);
+      console.log("clientHeight", clientHeight);
+      console.log("scrollHeight", scrollHeight);
+      if (scrollTop + clientHeight >= scrollHeight) {
+        setToggleToRequestMoreData((prev) => !prev);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    // if(!isFirstRenderCheckToGetJobList){
+    // isFirstRenderCheckToGetJobList = false;
+    getJobList();
+    // }
+  }, []);
+
+  useEffect(() => {
+    let getData;
+    if (!isFirstRenderCheckToGetJobList) {
+      getData = setTimeout(() => {
+        getJobList();
+      }, 2000);
+    }
+    if (isFirstRenderCheckToGetJobList) {
+      isFirstRenderCheckToGetJobList = false;
+    }
+
+    return () => {
+      clearTimeout(getData);
+    };
+  }, [toggleToRequestMoreData]);
+
+  // services
+
+  const getJobList = async () => {
+    const body = JSON.stringify({
+      limit: 10,
+      offset: 0,
+    });
+
+    try {
+      const res = await JobService.getList(body);
+      console.log("res", res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // OnChange
 
@@ -360,6 +423,6 @@ function App() {
       </Grid>
     </div>
   );
-}
+};
 
 export default App;
