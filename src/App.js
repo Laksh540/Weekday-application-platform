@@ -184,9 +184,10 @@ function App() {
       companyName: e?.target?.value,
     }));
   };
+
   return (
     <div className="App ">
-      <div className="filter-container">
+      <div className="filter-container one-rem-mb">
         <MultiSelect
           value={pageObj?.role?.selected}
           options={roleOptions}
@@ -255,10 +256,13 @@ function App() {
         />
       </div>
 
-      <Grid container spacing={2}>
+      <Grid container spacing={2} className="">
         <Grid item xs={12} md={4}>
-          <Card className="card-layout">
+          <Card className="card-layout shadow-2 border-radius-20">
             <CardContent>
+              <div className="w-fit py-4 px-6 fs-9  b-1-gray shadow border-radius-10 one-rem-mb">
+                <span>⏳ Posted a month ago</span>
+              </div>
               <p className="fs-13 fw-600 light-grey mt-0  half-rem-mb">
                 fampay{" "}
               </p>
