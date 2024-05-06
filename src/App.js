@@ -28,8 +28,10 @@ import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 
 const roleOptions = [
   { name: "frontend", category: "engineering" },
-  { name: "Backend", category: "engineering" },
-  { name: "Product Manager", category: "product" },
+  { name: "ios", category: "engineering" },
+  { name: "android", category: "engineering" },
+  { name: "backend", category: "engineering" },
+  { name: "tech lead", category: "product" },
 ];
 
 const noOfEmployeeOptions = [
@@ -47,12 +49,12 @@ const experienceOptions = [
 ];
 
 const RemoteOptions = [
-  { name: "Remote" },
-  { name: "Hybrid" },
-  { name: "In-Office" },
+  { name: "remote" },
+  { name: "mumbai" },
+  { name: "delhi ncr" },
 ];
 
-const minBasePayOptions = [{ name: "6" }, { name: "8" }, { name: "10" }];
+const minBasePayOptions = [{ name: "61" }, { name: "100" }, { name: "26" }];
 let isFirstRenderCheckToGetJobList = true;
 const App = () => {
   // let isFirstRenderCheckToGetJobList = true;
@@ -80,6 +82,8 @@ const App = () => {
     },
     companyName: "",
     jobList: [],
+    originalJobList: [],
+
     jobListOffset: 0,
     jobListCount: 0,
   });
@@ -126,6 +130,60 @@ const App = () => {
     };
   }, [toggleToRequestMoreData]);
 
+  useEffect(() => {
+    setPageObj((prevObj) => {
+      let updatedJobList = [...prevObj.originalJobList];
+      if (prevObj?.role?.selected?.length > 0) {
+        updatedJobList = updatedJobList?.filter((record) =>
+          prevObj?.role?.selected?.some((item) => item?.name === record.jobRole)
+        );
+      }
+      // if (prevObj?.noOfEmployees?.selected?.length > 0) {
+      //   updatedJobList = updatedJobList?.filter((record) =>
+      //     prevObj?.role?.selected?.some((item) => item?.name === record.maxExp)
+      //   );
+      // }
+      if (prevObj?.experience?.selected?.length > 0) {
+        updatedJobList = updatedJobList?.filter((record) =>
+          prevObj?.experience?.selected?.some(
+            (item) => parseFloat(item?.name) >= record.minExp
+          )
+        );
+      }
+      if (prevObj?.remote?.selected?.length > 0) {
+        updatedJobList = updatedJobList?.filter((record) =>
+          prevObj?.remote?.selected?.some(
+            (item) => item?.name === record.location
+          )
+        );
+      }
+      if (prevObj?.minimumBasePay?.selected) {
+        updatedJobList = updatedJobList?.filter(
+          (record) =>
+            record.minJdSalary &&
+            parseInt(prevObj?.minimumBasePay?.selected?.name) <=
+              record.minJdSalary
+        );
+      }
+
+      if (prevObj?.companyName?.length > 0) {
+        updatedJobList = updatedJobList?.filter(
+          (record) =>
+            prevObj?.companyName?.toLocaleLowerCase() ===
+            record.companyName?.toLocaleLowerCase()
+        );
+      }
+      return { ...prevObj, jobList: updatedJobList };
+    });
+  }, [
+    pageObj?.role,
+    pageObj?.noOfEmployees,
+    pageObj?.experience,
+    pageObj?.remote,
+    pageObj?.minimumBasePay,
+    pageObj?.companyName,
+  ]);
+
   // services
 
   const getJobList = async () => {
@@ -140,12 +198,16 @@ const App = () => {
       );
       setIsListLoading(false);
       const parsedResponse = JSON.parse(res);
-      setPageObj((prevPageObj) => ({
-        ...prevPageObj,
-        jobList: updatedJobList(prevPageObj.jobList, parsedResponse?.jdList),
-        jobListOffset: pageObj?.jobListOffset + 1,
-        jobListCount: parsedResponse?.totalCount,
-      }));
+      setPageObj((prevPageObj) => {
+        let list = updatedJobList(prevPageObj.jobList, parsedResponse?.jdList);
+        return {
+          ...prevPageObj,
+          jobList: list,
+          jobListOffset: pageObj?.jobListOffset + 1,
+          jobListCount: parsedResponse?.totalCount,
+          originalJobList: list,
+        };
+      });
       console.log("res", res);
     } catch (error) {
       setIsListLoading(false);
@@ -373,10 +435,11 @@ const App = () => {
                     <span>⏳ Posted a month ago</span>
                   </div>
                   <div className="flex  item-start">
-                    <div className="w-38 h-38 half-rem-mr">
+                    <div className="half-rem-mr">
                       <img
                         src={`${job?.logoUrl ?? ""}`}
-                        className="w-38 h-38"
+                        className=""
+                        height="38"
                         alt=""
                       />
                     </div>
