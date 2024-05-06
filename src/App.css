@@ -112,6 +112,10 @@ body {
   display: flex;
 }
 
+.visibility-hidden {
+  visibility: hidden;
+}
+
 /* flex class */
 
 .flex-col {
@@ -156,6 +160,9 @@ body {
   height: 3.275rem !important ;
 }
 
+.h-42-point-62 {
+  height: 2.664rem !important ;
+}
 /* Width */
 
 .w-fit {

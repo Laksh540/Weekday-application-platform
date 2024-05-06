@@ -362,16 +362,18 @@ const App = () => {
                   </div>
                   <div className="flex flex-col">
                     <p className="fs-13 fw-600 light-grey mt-0  half-rem-mb">
-                      fampay{" "}
+                      {job?.companyName}
                     </p>
                     <p
                       // color="subtitle1"
                       // gutterBottom
                       className="fs-14 fw-400  mt-0 half-rem-mb"
                     >
-                      Backend Engineer{" "}
+                      {job?.jobRole}{" "}
                     </p>
-                    <p className="fs-11 fw-500  mt-0 half-rem-mb">Bangalore </p>
+                    <p className="fs-11 fw-500  mt-0 half-rem-mb">
+                      {job?.location}{" "}
+                    </p>
                   </div>
                 </div>
                 <p
@@ -380,7 +382,9 @@ const App = () => {
                   // gutterBottom
                   className="fs-14 dark-grey fw-400"
                 >
-                  Estimated Salary: 18-35 LPA ✅
+                  {`Estimated Salary: ${job?.minJdSalary ?? "-"} -${
+                    job?.maxJdSalary ?? "-"
+                  } LPA ✅`}
                 </p>
                 <div className="card-content one-rem-mb">
                   <p
@@ -398,14 +402,7 @@ const App = () => {
                     About Us
                   </p>
                   <p className="content-fade m-0 fs-14">
-                    FamPay is building India's first neo-bank exclusively teens.
-                    FamPay helps teens make their own online and offline
-                    payments through UPI, Fam Pay App and FamCard. Our aim is to
-                    make banking cool for teens and to help them learn the value
-                    of money, savings and spending wisely. We are on a mission
-                    to raise a new, financially aware generation, and drive 250
-                    Million+ Indian teenagers to kickstart their financial
-                    journey super early in their life.
+                    {job?.jobDetailsFromCompany}
                   </p>
                   <Button
                     size="small"
@@ -417,7 +414,13 @@ const App = () => {
                     View Job
                   </Button>
                 </div>
-                <div>
+                <div
+                  className={
+                    parseFloat(job?.minExp) >= 0
+                      ? ""
+                      : "visibility-hidden .h-42-point-62"
+                  }
+                >
                   <p
                     color=""
                     // variant="body1"
@@ -426,7 +429,9 @@ const App = () => {
                   >
                     Minimum Experience
                   </p>
-                  <p className="fs-14 fw-400 mt-0 half-rem-mb">2 Years</p>
+                  <p className="fs-14 fw-400 mt-0 half-rem-mb">
+                    {job?.minExp ? `${job?.minExp} Years` : ""}
+                  </p>
                 </div>
                 <div>
                   <Button
