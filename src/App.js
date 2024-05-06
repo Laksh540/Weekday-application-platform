@@ -21,6 +21,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MultiSelect from "./Components/MultiSelect/MultiSelect";
 import "./App.css";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 const roleOptions = [
   { name: "frontend", category: "engineering" },
   { name: "Backend", category: "engineering" },
@@ -243,35 +245,37 @@ function App() {
         <Grid item xs={12} md={4}>
           <Card className="card-layout">
             <CardContent>
-              <p className="fs-13 fw-600 light-grey">fampay </p>
+              <p className="fs-13 fw-600 light-grey mt-0  half-rem-mb">
+                fampay{" "}
+              </p>
               <p
                 // color="subtitle1"
                 // gutterBottom
-                className="fs-14 fw-400"
+                className="fs-14 fw-400  mt-0 half-rem-mb"
               >
                 Backend Engineer{" "}
               </p>
-              <p className="fs-11 fw-500">Bangalore </p>
+              <p className="fs-11 fw-500  mt-0 half-rem-mb">Bangalore </p>
               <p
                 color=""
                 // variant="body1"
-                gutterBottom
+                // gutterBottom
                 className="fs-14 dark-grey fw-400"
               >
                 Estimated Salary: 18-35 LPA ✅
               </p>
-              <div class="card-content">
+              <div class="card-content one-rem-mb">
                 <p
                   // variant="h6"
                   component="div"
-                  className="fs-16"
+                  className="fs-16 mb-0"
                 >
                   About Company
                 </p>
                 <p
                   color=""
                   // variant="subtitle2"
-                  className="fs-14 fw-500"
+                  className="fs-14 fw-500 half-rem-mt half-rem-mb"
                 >
                   About Us
                 </p>
@@ -289,21 +293,46 @@ function App() {
                   size="small"
                   variant="text"
                   color="primary"
+                  className="text-capitalize"
                   disableRipple
                 >
                   View Job
                 </Button>
               </div>
               <div>
+                <p
+                  color=""
+                  // variant="body1"
+                  // gutterBottom
+                  className="fs-14 dark-grey fw-400 mt-0 half-rem-mb"
+                >
+                  Minimum Experience
+                </p>
+                <p className="fs-14 fw-400 mt-0 half-rem-mb">2 Years</p>
+              </div>
+              <div>
                 <Button
                   variant="contained"
-                  color="success"
+                  // color="success"
                   fullWidth
-                  className="half-rem-mb half-rem-mt"
+                  className="half-rem-mb half-rem-mt text-light-green text-1000 font-lexend text-capitalize"
+                  disableRipple
                 >
-                  Easy Apply
+                  ⚡ Easy Apply
                 </Button>
-                <Button variant="contained" color="primary" fullWidth>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className=" text-capitalize font-lexend fw-200"
+                  fullWidth
+                  startIcon={
+                    <div className="flex">
+                      <AccountCircleIcon className="half-rem-mr " />
+                      <AccountCircleIcon className=" " />
+                    </div>
+                  }
+                  disableRipple
+                >
                   Unlock Referral Asks
                 </Button>
               </div>
