@@ -14,7 +14,7 @@ const InputText = (props) => {
   const { value, onChange, label } = props;
 
   return (
-    <div className="">
+    <div className="m-width-100">
       <div className="h-24">
         {value?.length > 0 ? <p className="m-0 fs-13">{label}</p> : null}
       </div>

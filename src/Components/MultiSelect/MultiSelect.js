@@ -35,7 +35,7 @@ const MultiSelect = (props) => {
       <Autocomplete
         multiple={!single ? true : false}
         id="combo-box-demo"
-        className={`autocomplete font-lexend `}
+        className={`autocomplete font-lexend`}
         filterSelectedOptions
         value={value}
         inputValue={inputValue}

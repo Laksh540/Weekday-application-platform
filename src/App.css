@@ -13,6 +13,9 @@ body {
 .one-rem-mt {
   margin-top: 1rem;
 }
+.mb-5 {
+  margin-bottom: 5px !important;
+}
 
 .two-rem-mt {
   margin-top: 2rem;
@@ -236,7 +239,11 @@ body {
   animation: spin-animation 1s infinite;
   display: inline-block;
 }
-
+.base-Popper-root {
+  div {
+    font-size: 14px !important;
+  }
+}
 @keyframes spin-animation {
   0% {
     transform: rotate(0deg);
@@ -254,6 +261,19 @@ body {
 .autocomplete {
   width: fit-content;
   min-width: 250px;
+}
+.m-width-100 {
+  min-width: 250px;
+}
+@media screen and (max-width: 768px) {
+  .autocomplete,
+  .m-width-100 {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+  .filter-container {
+    display: block !important;
+  }
 }
 /* .autocomplete-label {
   height: 24px;

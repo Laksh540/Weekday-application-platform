@@ -418,7 +418,7 @@ const App = () => {
         />
       </div>
 
-      <Grid container spacing={2} className="">
+      <Grid container spacing={3} className="">
         {/* pageObj?.jobList?.length === 0 && isListLoading */}
         {pageObj?.jobList?.length === 0 && isListLoading ? (
           <div className=" flex justify-center w-100 five-rem-mt">
@@ -444,17 +444,17 @@ const App = () => {
                       />
                     </div>
                     <div className="flex flex-col">
-                      <p className="fs-13 fw-600 light-grey mt-0  half-rem-mb">
+                      <p className="fs-13 fw-600 light-grey mt-0  mb-5">
                         {job?.companyName}
                       </p>
                       <p
                         // color="subtitle1"
                         // gutterBottom
-                        className="fs-14 fw-400  mt-0 half-rem-mb"
+                        className="fs-14 fw-400  mt-0 mb-5"
                       >
                         {job?.jobRole}{" "}
                       </p>
-                      <p className="fs-11 fw-500  mt-0 half-rem-mb">
+                      <p className="fs-11 fw-500  mt-0 mb-5">
                         {job?.location}{" "}
                       </p>
                     </div>
