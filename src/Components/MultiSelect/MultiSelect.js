@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Autocomplete, Chip, TextField, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import selectClass from "./MultiSelect.module.css";
+// import selectClass from "./MultiSelect.module.css";
 
 // const options = [
 //   { name: "frontend", category: "engineering" },
@@ -27,15 +27,15 @@ const MultiSelect = (props) => {
 
   return (
     <div className="">
-      <div className={selectClass?.["autocomplete-label"]}>
+      <div className={" h-24"}>
         {value?.length > 0 || (single && value !== null) ? (
-          <Typography className="">{label}</Typography>
+          <p className="m-0 fs-13">{label}</p>
         ) : null}
       </div>
       <Autocomplete
         multiple={!single ? true : false}
         id="combo-box-demo"
-        className={selectClass?.autocomplete}
+        className={`autocomplete font-lexend `}
         filterSelectedOptions
         value={value}
         inputValue={inputValue}
@@ -55,9 +55,7 @@ const MultiSelect = (props) => {
             <TextField
               {...params}
               className={`   ${
-                value?.length === 0
-                  ? selectClass?.["popupIndicator-separator"]
-                  : ""
+                value?.length === 0 ? "popupIndicator-separator" : ""
               }`}
               placeholder={value?.length === 0 || single ? label : ""}
             />
@@ -69,19 +67,19 @@ const MultiSelect = (props) => {
             <Chip
               // variant="outlined"
               {...getTagProps({ index })}
-              className={`${selectClass?.["autocomplete-chip"]} ${
+              className={` autocomplete-chip ${
                 value?.length !== index - 1
-                  ? selectClass?.["autocomplete-chip-margin-right"]
-                  : selectClass?.["autocomplete-chip-margin-right-0"]
+                  ? "autocomplete-chip-margin-right"
+                  : "autocomplete-chip-margin-right-0"
               } `}
               key={option?.name}
-              deleteIcon={<CloseIcon className=" " />}
+              deleteIcon={<CloseIcon className="" />}
               label={option?.name}
             />
             // </div>
           ))
         } //  to display individual
-        clearIcon={<CloseIcon className=" " />}
+        clearIcon={<CloseIcon className="w-20 h-20  " />}
         componentsProps={{
           popupIndicator: {
             disableRipple: true,
@@ -89,11 +87,9 @@ const MultiSelect = (props) => {
           clearIndicator: {
             className: `${
               value?.length > 0
-                ? selectClass?.[
-                    "popupIndicator-separator-after-clear-indicator"
-                  ]
+                ? "popupIndicator-separator-after-clear-indicator"
                 : ""
-            } ${selectClass?.["MuiAutocomplete-clearIndicator"]}`,
+            } MuiAutocomplete-clearIndicator`,
           },
         }}
         //   openText="test2"

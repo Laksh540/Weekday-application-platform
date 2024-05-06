@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Autocomplete, Chip, TextField, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import selectClass from "./InputText.module.css";
 
 // const options = [
 //   { name: "frontend", category: "engineering" },
