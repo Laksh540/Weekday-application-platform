@@ -1,10 +1,10 @@
 import logo from "./logo.svg";
 import { useState } from "react";
-import "./App.css";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
+
+// import "@fontsource/roboto/300.css";
+// import "@fontsource/roboto/400.css";
+// import "@fontsource/roboto/500.css";
+// import "@fontsource/roboto/700.css";
 import {
   Autocomplete,
   Chip,
@@ -12,11 +12,15 @@ import {
   TextField,
   Typography,
   item,
+  Card,
+  CardContent,
+  CardActions,
+  Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MultiSelect from "./Components/MultiSelect/MultiSelect";
-
+import "./App.css";
 const roleOptions = [
   { name: "frontend", category: "engineering" },
   { name: "Backend", category: "engineering" },
@@ -236,17 +240,75 @@ function App() {
       </div>
 
       <Grid container spacing={2}>
-        <Grid item xs={8}>
-          xs=8
-        </Grid>
-        <Grid item xs={4}>
-          xs=4
-        </Grid>
-        <Grid item xs={4}>
-          xs=4
-        </Grid>
-        <Grid item xs={8}>
-          xs=8
+        <Grid item xs={12} md={4}>
+          <Card className="card-layout">
+            <CardContent>
+              <p className="fs-13 fw-600 light-grey">fampay </p>
+              <p
+                // color="subtitle1"
+                // gutterBottom
+                className="fs-14 fw-400"
+              >
+                Backend Engineer{" "}
+              </p>
+              <p className="fs-11 fw-500">Bangalore </p>
+              <p
+                color=""
+                // variant="body1"
+                gutterBottom
+                className="fs-14 dark-grey fw-400"
+              >
+                Estimated Salary: 18-35 LPA ✅
+              </p>
+              <div class="card-content">
+                <p
+                  // variant="h6"
+                  component="div"
+                  className="fs-16"
+                >
+                  About Company
+                </p>
+                <p
+                  color=""
+                  // variant="subtitle2"
+                  className="fs-14 fw-500"
+                >
+                  About Us
+                </p>
+                <p class="content-fade m-0 fs-14">
+                  FamPay is building India's first neo-bank exclusively teens.
+                  FamPay helps teens make their own online and offline payments
+                  through UPI, Fam Pay App and FamCard. Our aim is to make
+                  banking cool for teens and to help them learn the value of
+                  money, savings and spending wisely. We are on a mission to
+                  raise a new, financially aware generation, and drive 250
+                  Million+ Indian teenagers to kickstart their financial journey
+                  super early in their life.
+                </p>
+                <Button
+                  size="small"
+                  variant="text"
+                  color="primary"
+                  disableRipple
+                >
+                  View Job
+                </Button>
+              </div>
+              <div>
+                <Button
+                  variant="contained"
+                  color="success"
+                  fullWidth
+                  className="half-rem-mb half-rem-mt"
+                >
+                  Easy Apply
+                </Button>
+                <Button variant="contained" color="primary" fullWidth>
+                  Unlock Referral Asks
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </Grid>
       </Grid>
     </div>

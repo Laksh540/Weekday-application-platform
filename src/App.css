@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+body {
+  font-family: "Lexend", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+}
 .App {
   margin: 24px 36px;
 }
@@ -5,4 +11,88 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+.one-rem-mt {
+  margin-top: 1rem;
+}
+.one-rem-mt {
+  margin-top: 1rem;
+}
+.two-rem-mt {
+  margin-top: 1rem;
+}
+.one-rem-mb {
+  margin-bottom: 1rem !important;
+}
+.half-rem-mb {
+  margin-bottom: 0.5rem !important;
+}
+.half-rem-mt {
+  margin-top: 0.5rem !important;
+}
+.m-0 {
+  margin: 0 !important;
+}
+.fs-13 {
+  font-size: 13px !important;
+}
+.fs-14 {
+  font-size: 14px !important;
+}
+.fs-16 {
+  font-size: 16px !important;
+}
+.fs-11 {
+  font-size: 11px !important;
+}
+.fw-600 {
+  font-weight: 600 !important;
+}
+.fw-400 {
+  font-weight: 400 !important;
+}
+.fw-500 {
+  font-weight: 500 !important;
+}
+.black-color {
+  color: #000;
+}
+.light-grey {
+  color: #8b8b8b;
+}
+.dark-grey {
+  color: rgb(77, 89, 106);
+}
+
+.card-layout {
+  .card-content {
+    position: relative;
+    .content-fade {
+      height: 140px;
+      overflow: hidden;
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 14px;
+      font-weight: 400;
+      &::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: linear-gradient(transparent 60px, white);
+      }
+    }
+    button {
+      text-transform: capitalize;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-size: 13px;
+    }
+    button:hover {
+      background: transparent !important;
+    }
+  }
 }
