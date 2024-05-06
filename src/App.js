@@ -22,6 +22,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MultiSelect from "./Components/MultiSelect/MultiSelect";
 import "./App.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import InputText from "./Components/InputText/InputText";
 
 const roleOptions = [
   { name: "frontend", category: "engineering" },
@@ -176,6 +177,13 @@ function App() {
       },
     }));
   };
+
+  const onChangeCompanyNameInput = (e) => {
+    setPageObj((prevObj) => ({
+      ...prevObj,
+      companyName: e?.target?.value,
+    }));
+  };
   return (
     <div className="App ">
       <div className="filter-container">
@@ -239,6 +247,12 @@ function App() {
           label={"Minimum Base pay Salary"}
           single={true}
         />
+
+        <InputText
+          value={pageObj?.companyName}
+          label={"Company Name"}
+          onChange={onChangeCompanyNameInput}
+        />
       </div>
 
       <Grid container spacing={2}>
@@ -264,7 +278,7 @@ function App() {
               >
                 Estimated Salary: 18-35 LPA ✅
               </p>
-              <div class="card-content one-rem-mb">
+              <div className="card-content one-rem-mb">
                 <p
                   // variant="h6"
                   component="div"
@@ -279,7 +293,7 @@ function App() {
                 >
                   About Us
                 </p>
-                <p class="content-fade m-0 fs-14">
+                <p className="content-fade m-0 fs-14">
                   FamPay is building India's first neo-bank exclusively teens.
                   FamPay helps teens make their own online and offline payments
                   through UPI, Fam Pay App and FamCard. Our aim is to make

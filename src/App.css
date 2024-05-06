@@ -110,6 +110,16 @@ body {
   display: flex;
 }
 
+/* height */
+
+.h-24 {
+  height: 1.5rem;
+}
+
+.h-38 {
+  height: 3.275rem;
+}
+
 /* page classes */
 
 .filter-container {
